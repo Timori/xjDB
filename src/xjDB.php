@@ -18,31 +18,20 @@ class xjDB
     $this->createIfNotExists($this->path);
     $this->xmlRoot = simplexml_load_file($this->path);
   }
-
-  public function test()
-  {
-    $result = $this->xmlRoot->xpath("//row[@id='1']");
-    $result[0]->attributes()[1] = "esel";
-    
-    $this->xmlRoot->asXml($this->path);
-  }
-  
-  public function testFill($rows)
-  {
-    for($i = 0; $i < $rows; $i++)
-    {
-      $row = $this->xmlRoot->addChild("row");
-      $row->addAttribute("test", $i);
-    }
-    
-    $this->xmlRoot->asXml($this->path);
-    echo "done";
-  }
   
   //Clears all Entrys
   public function clearAll()
   {
     unset($this->xmlRoot->row);
+    
+    $this->xmlRoot->asXml($this->path);
+  }
+  
+  //Clears only Entry by Attribute
+  public function clear($attribute, $value)
+  {
+    list($result) = $this->xmlRoot->xpath("//row[@$attribute='$value']");
+    unset($result[0]);
     
     $this->xmlRoot->asXml($this->path);
   }
@@ -60,12 +49,24 @@ class xjDB
   }
   
   //Update a specific attribute
-  public function update($id, $column, $value)
+  public function update($id, $attribute, $value)
   {
     $result = $this->xmlRoot->xpath("//row[@id='".$id."']");
     $result[0]->attributes()[$column] = $value;
     
     $this->xmlRoot->asXml($this->path);
+  }
+  
+  //Gets all Rows matching the kriteria
+  public function rows($attribute, $value)
+  {
+    return $this->xmlRoot->xpath("//row[@$attribute='$value']");
+  }
+  
+  //Gets one specific row
+  public function row($attribute, $value)
+  {
+    return $this->rows($attribute,$value)[0]->attributes();
   }
   
   //Creates the Directory and/or File
