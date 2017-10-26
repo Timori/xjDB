@@ -57,16 +57,34 @@ class xjDB
     $this->xmlRoot->asXml($this->path);
   }
   
-  //Gets all Rows matching the kriteria
-  public function rows($attribute, $value)
+  public function rows($where)
   {
-    return $this->xmlRoot->xpath("//row[@$attribute='$value']");
+    $result = null;
+    foreach($where as $attribute => $value)
+    {
+      $result_set = array();
+      
+      if(!$result)
+      {
+        $result = $this->xmlRoot->xpath("//row[@$attribute='$value']");
+      }
+      
+      foreach($result as $entry)
+      {
+        if($entry->attributes()[$attribute] == $value)
+        {
+          $result_set[] = $entry;
+        }
+      }
+      $result = $result_set;
+    }
+    return $result;
   }
   
   //Gets one specific row
   public function row($attribute, $value)
   {
-    return $this->rows($attribute,$value)[0]->attributes();
+    return $this->rows([$attribute => $value])[0]->attributes();
   }
   
   //Creates the Directory and/or File
