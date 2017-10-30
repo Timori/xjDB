@@ -8,6 +8,6 @@ xjDB is a php script which can create and manipulate xml-"databases". It intends
 - PHP Extension: [libxml](http://pl1.php.net/manual/en/book.libxml.php)
 ### Documentation
 You can find the API Documentation here:
-TODO
+[documentation](https://dev.ts-webdev.de/github/xjDB/doc/)
 ### License
 This Script uses the BSD 3-Clause License.
