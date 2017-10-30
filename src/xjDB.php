@@ -56,7 +56,8 @@ class xjDB
     
     $this->xmlRoot->asXml($this->path);
   }
-  
+ 
+  //Gets rows based on multiple kriteria
   public function rows($where)
   {
     $result = null;
