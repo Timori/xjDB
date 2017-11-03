@@ -17,8 +17,13 @@ $fileDb = new \Timori\xjDB('file.xml');
 // You can now use the script
 ?>
 ```
+If you want to add the file to a specific folder, you can use the constructor like this:
+```php
+$fileDb = new \Timori\xjDB('file.xml', 'src/databases');
+```
+*Note: You must provide no trailing slash for the folder.*
 ##### Insert Data (SQL Equvalent: INSERT INTO):
-You can insert data into the file very easely. You need an associative array, where the attribute name holds the value. Every entry is plain string.
+You can insert data into the file very easely. You need an associative array, where the attribute name holds the value. Every entry is plain string in the xml file.
 *Note: Rows can have different "columns" or attributes per row*
 ```php
 // ... require etc.
