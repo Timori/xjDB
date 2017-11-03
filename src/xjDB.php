@@ -9,7 +9,7 @@ namespace Timori;
 class xjDB
 {
   /**
-  * @var SimpleXMLElement Represents the root element of the xml-File, which is the table tag
+  * @var \SimpleXMLElement Represents the root element of the xml-File, which is the table tag
   */
   private $xmlRoot = null;
   
@@ -79,14 +79,14 @@ class xjDB
   /**
   * Updates an entry with a given id.
   *
-  * @param String $id Id of the entry
+  * @param array where Associative array of attributes
   * @param String $attribute Attribute, where the old value is found
   * @param String $value Value to be update
   */
-  public function update($id, $attribute, $value)
+  public function update($where, $attribute, $value)
   {
-    $result = $this->xmlRoot->xpath("//row[@id='".$id."']");
-    $result[0]->attributes()[$column] = $value;
+    $result = $this->rows($where);
+    $result[0]->attributes()[$attribute] = $value;
     
     $this->xmlRoot->asXml($this->path);
   }
@@ -98,26 +98,33 @@ class xjDB
   * 
   * @return array SimpleXMLElements representing the results.
   */
-  public function rows($where)
+  public function rows($where = null)
   {
     $result = null;
-    foreach($where as $attribute => $value)
+    if($where)
     {
-      $result_set = array();
-      
-      if(!$result)
+      foreach($where as $attribute => $value)
       {
-        $result = $this->xmlRoot->xpath("//row[@$attribute='$value']");
-      }
-      
-      foreach($result as $entry)
-      {
-        if($entry->attributes()[$attribute] == $value)
+        $result_set = array();
+        
+        if(!$result)
         {
-          $result_set[] = $entry;
+          $result = $this->xmlRoot->xpath("//row[@$attribute='$value']");
         }
+
+        foreach($result as $entry)
+        {
+          if($entry->attributes()[$attribute] == $value)
+          {
+            $result_set[] = $entry;
+          }
+        }
+        $result = $result_set;
       }
-      $result = $result_set;
+    }
+    else
+    {
+      $result = $this->xmlRoot->xpath("//row");
     }
     return $result;
   }
@@ -128,7 +135,7 @@ class xjDB
   * @param String $attribute Attribute, which holds the value
   * @param String $value The wanted value
   *
-  * @return SimpleXMLElement representing the result
+  * @return \SimpleXMLElement representing the result
   */
   public function row($attribute, $value)
   {
