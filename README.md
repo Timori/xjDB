@@ -174,6 +174,6 @@ You can also delete data, either by attribute and value or you can clear the who
 ---
 ### API Documentation
 You can find the API Documentation here:
-[documentation](https://dev.ts-webdev.de/github/xjDB/doc/)
+TODO: Server structure changed. Docs link will appear soon.
 ### License
 This Script uses the BSD 3-Clause License.
