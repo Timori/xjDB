@@ -14,7 +14,7 @@ class xjDB
   private $xmlRoot = null;
   
   /**
-  * @var String The path to the file.
+  * @var string The path to the file.
   */
   private $path = null;
   
@@ -22,8 +22,8 @@ class xjDB
   * Constructor, creates the xml-File, if it doesn't exist.
   * Also the directory will be created, if it doesn't exist.
   *
-  * @param String $file Represents the xml-File itself
-  * @param String $dir Represents the directory, where the file should be created
+  * @param string $file Represents the xml-File itself
+  * @param string $dir Represents the directory, where the file should be created
   */
   public function __construct($file, $dir = null)
   {
@@ -49,8 +49,8 @@ class xjDB
   /**
   * Clears all rows with the given attribute and value
   *
-  * @param String $attribute The row attribute
-  * @param String $value The attribute's value
+  * @param string $attribute The row attribute
+  * @param string $value The attribute's value
   */
   public function clear($attribute, $value)
   {
@@ -79,9 +79,9 @@ class xjDB
   /**
   * Updates an entry with a given id.
   *
-  * @param array where Associative array of attributes
-  * @param String $attribute Attribute, where the old value is found
-  * @param String $value Value to be update
+  * @param array $where Associative array of attributes
+  * @param string $attribute Attribute, where the old value is found
+  * @param string $value Value to be update
   */
   public function update($where, $attribute, $value)
   {
@@ -132,8 +132,8 @@ class xjDB
   /**
   * Gets one row by attribute holds the given value.
   *
-  * @param String $attribute Attribute, which holds the value
-  * @param String $value The wanted value
+  * @param string $attribute Attribute, which holds the value
+  * @param string $value The wanted value
   *
   * @return \SimpleXMLElement representing the result
   */
@@ -146,7 +146,7 @@ class xjDB
   /**
   * Creates either a file or a directory.
   *
-  * @param String $file Path to the file or directory
+  * @param string $file Path to the file or directory
   * @param boolean $isDir Is the given path a directory?
   */
   private function createIfNotExists($file, $isDir = false)
@@ -167,7 +167,7 @@ class xjDB
   /**
   * Creates the file with basic XML structure.
   *
-  * @param String $file The file including path to be created.
+  * @param string $file The file including path to be created.
   */
   private function createFile($file)
   {
