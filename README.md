@@ -174,6 +174,6 @@ You can also delete data, either by attribute and value or you can clear the who
 ---
 ### API Documentation
 You can find the API Documentation here:
-[documentation](https://docs.ts-webdev.de/api/xjDB/classes/Timori_xjDB.xhtml)
+[documentation](https://docs.ts-webdev.de/api/xjDB/index.html)
 ### License
 This Script uses the BSD 3-Clause License.
