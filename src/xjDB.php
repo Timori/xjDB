@@ -1,11 +1,19 @@
 <?php
 /**
-* Script, which makes it easy to use XML-Files as a Flat File Database System.
-* @copyright 2017 Tobias Schotenröhr
-*/
+ * This script can create and manipulate xml-"databases".
+ *
+ * This script is planned to be an alternative to MySQL, PostgreSQL and SQLite. It is currently stable to use, but also in development.
+ *
+ * @category     Flat File Database
+ * @author       Tobias Schotenröhr (tschotenroehr@yandex.com)
+ * @copyright    Tobias Schotenröhr 2017
+ */
 
 namespace Timori;
 
+/**
+ * Class to create xml files which can be used to hold permanent data.
+ */
 class xjDB
 {
   /**
